@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d0f4e148d961bd4aa3440bd92f6a4bb, type: 3}
+  m_Script: {fileID: 11500000, guid: a1c5fb591fa69fe4e904c0edc037d9f2, type: 3}
   m_Name: Terrain Builder Preset 02
   m_EditorClassIdentifier: 
   transformSettings:
