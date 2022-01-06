@@ -9,7 +9,7 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 
-namespace UnityEditor.TerrainTools
+namespace Rowlan.TerrainBuilder
 {
     /// <summary>
     /// Struct defining the description for a NoiseShaderGenerator

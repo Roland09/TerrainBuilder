@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.UIElements;
-using static UnityEditor.TerrainTools.TerrainBuilderSettings;
+using static Rowlan.TerrainBuilder.TerrainBuilderSettings;
 
-namespace UnityEditor.TerrainTools
+namespace Rowlan.TerrainBuilder
 {
     internal class TerrainBuilderView : BindableElement, TerrainBuilderSettings.IChangeListener
     {

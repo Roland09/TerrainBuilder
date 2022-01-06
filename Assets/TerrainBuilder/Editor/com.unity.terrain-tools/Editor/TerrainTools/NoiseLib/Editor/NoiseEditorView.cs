@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using UnityEngine.Experimental.Rendering;
+using UnityEditor;
 
-namespace UnityEditor.TerrainTools
+namespace Rowlan.TerrainBuilder
 {
     internal class NoiseEditorView : BindableElement
     {

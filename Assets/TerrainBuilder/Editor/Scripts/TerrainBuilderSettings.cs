@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-namespace UnityEditor.TerrainTools
+namespace Rowlan.TerrainBuilder
 {
     /// <summary>
     /// Wrapper for the NoiseSettings which adds an event handling mechanism

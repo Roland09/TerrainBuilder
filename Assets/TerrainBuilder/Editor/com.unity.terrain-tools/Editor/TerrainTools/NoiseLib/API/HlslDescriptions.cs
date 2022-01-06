@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace UnityEditor.TerrainTools
+namespace Rowlan.TerrainBuilder
 {
     /// <summary>
     /// Enum for determining the type of a given HLSL value during shader generation

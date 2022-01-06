@@ -3,7 +3,7 @@ using UnityEditor;
 using System.Text;
 using System.Collections.Generic;
 
-namespace UnityEditor.TerrainTools
+namespace Rowlan.TerrainBuilder
 {
     /// <summary>
     /// Utility struct for creating all the different shader snippets that are

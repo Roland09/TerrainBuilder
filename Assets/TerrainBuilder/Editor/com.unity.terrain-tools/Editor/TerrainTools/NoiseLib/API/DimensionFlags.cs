@@ -1,4 +1,4 @@
-namespace UnityEditor.TerrainTools
+namespace Rowlan.TerrainBuilder
 {
     /// <summary>
     /// An enum used for defining which n-dimensional spaces a particular

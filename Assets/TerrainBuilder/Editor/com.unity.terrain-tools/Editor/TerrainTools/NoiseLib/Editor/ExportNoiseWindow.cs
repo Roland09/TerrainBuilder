@@ -1,8 +1,9 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 
-namespace UnityEditor.TerrainTools
+namespace Rowlan.TerrainBuilder
 {
     /// <summary>
     /// Class that implements EditorWindow in order to provide options for exporting noise to 

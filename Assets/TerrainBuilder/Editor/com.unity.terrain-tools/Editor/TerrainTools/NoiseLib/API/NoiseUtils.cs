@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.Experimental.Rendering;
 
-namespace UnityEditor.TerrainTools
+namespace Rowlan.TerrainBuilder
 {
     /// <summary>
     /// A utility class for rendering noise defined by NoiseSettings into various Texture types.

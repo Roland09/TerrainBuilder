@@ -1,4 +1,4 @@
-namespace UnityEditor.TerrainTools
+namespace Rowlan.TerrainBuilder
 {
     /// <summary>
     /// A NoiseType implementation for Perlin noise

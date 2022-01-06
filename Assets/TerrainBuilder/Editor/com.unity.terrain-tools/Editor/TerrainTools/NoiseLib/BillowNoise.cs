@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace UnityEditor.TerrainTools
+namespace Rowlan.TerrainBuilder
 {
     /// <summary>
     /// A NoiseType implementation for Billow noise

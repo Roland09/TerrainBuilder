@@ -1,6 +1,7 @@
+using UnityEditor;
 using UnityEngine;
 
-namespace UnityEditor.TerrainTools
+namespace Rowlan.TerrainBuilder
 {
     /// <summary>
     /// Flags passed to NoiseSettingsGUI.OnGUI. Used to specify which portions of the Noise Settings GUI to draw.

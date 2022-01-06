@@ -1,7 +1,8 @@
 using UnityEngine;
 using System;
+using UnityEditor;
 
-namespace UnityEditor.TerrainTools
+namespace Rowlan.TerrainBuilder
 {
     /// <summary>
     /// A data class that can be used to define various types of noise.

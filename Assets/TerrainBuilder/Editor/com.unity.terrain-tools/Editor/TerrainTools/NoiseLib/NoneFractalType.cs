@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace UnityEditor.TerrainTools
+namespace Rowlan.TerrainBuilder
 {
     /// <summary>
     /// A FractalType implementation for a fractal that does nothing. This will give you raw
