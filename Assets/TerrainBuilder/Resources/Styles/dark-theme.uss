@@ -1,0 +1,26 @@
+.terrain-builder_toolbar
+{
+	display: flex;
+	flex: 1;
+	width: auto;
+	border-width: 2px;
+	border-color: #ff0000;
+	flex-direction: row;
+}
+
+.terrain-builder_create-terrain-button
+{
+    width: 200px;
+}
+
+.terrain-builder_continuous-update-enumfield
+{
+	width: 300px;
+}
+
+.terrain-builder_warning-label
+{
+	color: #ff0000;
+	-unity-font-weight: bold;
+	-unity-text-align: middle-right;
+}
