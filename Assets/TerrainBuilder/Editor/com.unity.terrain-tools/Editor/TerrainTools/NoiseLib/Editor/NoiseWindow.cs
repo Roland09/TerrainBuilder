@@ -15,7 +15,7 @@ namespace Rowlan.TerrainBuilder
         /// <summary>
         /// Open a NoiseWindow with no source asset to load from
         /// </summary>
-        [MenuItem("Window/Terrain/Edit Noise", false, 3021)]
+        //[MenuItem("Window/Terrain/Edit Noise", false, 3021)]
         public static NoiseWindow Open()
         {
             NoiseSettings noise = ScriptableObject.CreateInstance<NoiseSettings>();

@@ -14,7 +14,7 @@ namespace Rowlan.TerrainBuilder
         /// accessible via the "Assets/Create/Noise Settings" MenuItem
         /// </summary>
         /// <returns> A reference to the newly created NoiseSettings Asset </returns>d
-        [MenuItem("Assets/Create/Noise Settings")]
+        //[MenuItem("Assets/Create/Noise Settings")]
         public static NoiseSettings CreateAsset()
         {
             return CreateAsset(AssetDatabase.GenerateUniqueAssetPath("Assets/New Noise Settings.asset"));
