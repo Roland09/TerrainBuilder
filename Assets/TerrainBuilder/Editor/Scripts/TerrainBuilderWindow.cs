@@ -64,7 +64,10 @@ namespace Rowlan.TerrainBuilder
 
             #region Rowlan Changes
             
-            (wnd.m_noiseAsset as TerrainBuilderSettings).UnregisterAllListeners();
+            if(wnd.m_noiseAsset != null)
+            {
+                (wnd.m_noiseAsset as TerrainBuilderSettings).UnregisterAllListeners();
+            }
 
             if (wnd.terrainBuilderView != null)
             {
