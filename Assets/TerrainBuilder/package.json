@@ -1,12 +1,17 @@
 {
-  "name": "com.rowlan.terrainbuilder",
-  "displayName": "Terrain Builder",
-  "version": "0.0.1",
-  "unity": "2019.1",
-  "description": "Create Unity Terrains via Noise",
-  "keywords": [
-    "Editor Tools"
-  ],
-  "category": "Scripts",
-  "type": "tool"
+    "name": "com.rowlan.terrainbuilder",
+    "displayName": "Terrain Builder",
+    "version": "0.0.1",
+    "author": {
+        "name": "Rowlan",
+        "email": "",
+        "url": ""
+    },
+    "unity": "2019.1",
+    "description": "Create Unity Terrains via Noise",
+    "keywords": [
+        "Editor Tools"
+    ],
+    "category": "Scripts",
+    "type": "tool"
 }
