@@ -28,8 +28,8 @@ namespace Rowlan.TerrainBuilder
         {
             this.noiseSettings = noiseSettings;
 
-            // load stylesheet
-            styleSheets.Add(Resources.Load<StyleSheet>(Styles.USS_FILE));
+            // load stylesheet; note: Resources.Load doesn't seem to work when the asset comes from github via package manager
+            styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>(Styles.USS_FILE));
 
 
             // toolbar
