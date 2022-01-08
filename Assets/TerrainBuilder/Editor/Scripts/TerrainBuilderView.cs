@@ -67,15 +67,50 @@ namespace Rowlan.TerrainBuilder
             // TODO: remove
             Debug.Log("Creating terrain " + Time.time);
 
+            // get the active terrain and ensure a terrain exists
+            Terrain terrain = Terrain.activeTerrain;
+            if (terrain == null)
+                return;
+
+            // get all terrains
             Terrain[] terrains = UnityEngine.Object.FindObjectsOfType<Terrain>().ToArray();
 
-            foreach (var terrain in terrains)
-            {
-                // TODO: multi-tile terrain; currently all terrains get the same noise
-                int sizeX = terrain.terrainData.heightmapResolution;
-                int sizeY = terrain.terrainData.heightmapResolution;
+            // get the grouping ID from the active/selected Terrain
+            int groupingID = terrain.groupingID; 
 
-                ApplyToTerrain(terrain.terrainData, noiseSettings, sizeX, sizeY);
+            // get map of terrains of the same group in order to retrieve tile indexes
+            UnityEngine.TerrainUtils.TerrainMap map = UnityEngine.TerrainUtils.TerrainMap.CreateFromPlacement(terrain, (t) => { return t.groupingID == groupingID; });
+
+            // apply noise to the individual tiles
+            foreach (KeyValuePair<UnityEngine.TerrainUtils.TerrainTileCoord, Terrain> pair in map.terrainTiles)
+            {
+                // get the tile coordinates
+                int tileX = pair.Key.tileX;
+                int tileZ = pair.Key.tileZ;
+
+                TerrainData terrainData = pair.Value.terrainData;
+
+                int sizeX = terrainData.heightmapResolution;
+                int sizeY = terrainData.heightmapResolution;
+
+                // create a clone of the noise settings for every tile and modify it accordingly
+                NoiseSettings tileNoiseSettings = ScriptableObject.CreateInstance<NoiseSettings>();
+                tileNoiseSettings.Copy(noiseSettings);
+
+                // problem: the terrain tiles didn't align properly, there were always gaps
+                // tried to find out the difference by simply aligning the tiles manually, got those numbers:
+                // scale 1 => correct: 0.998
+                // scale 10 => correct: 9.998
+                // => multiplying  the scale with that number worked for the other scales
+                // need to find out why there's this difference; leaving it as it is for now, no time to evaluate the cause
+                float magicNumber = 0.998f;
+
+                //cs.transformSettings.translation.z += ff.value;
+                tileNoiseSettings.transformSettings.translation.x += tileNoiseSettings.transformSettings.scale.x * tileX * magicNumber;
+                tileNoiseSettings.transformSettings.translation.z += tileNoiseSettings.transformSettings.scale.z * tileZ * magicNumber;
+
+                // create heightmap using the noise
+                ApplyToTerrain(terrainData, tileNoiseSettings, sizeX, sizeY);
 
             }
         }
