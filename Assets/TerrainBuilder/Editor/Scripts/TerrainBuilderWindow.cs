@@ -15,7 +15,7 @@ namespace Rowlan.TerrainBuilder
         /// <summary>
         /// Open a NoiseWindow with no source asset to load from
         /// </summary>
-        [MenuItem("Rowlan/Terrain Builder")]
+        [MenuItem("Window/Rowlan/Experimental/Terrain Builder")]
         public static TerrainBuilderWindow Open()
         {
             #region Rowlan Changes
