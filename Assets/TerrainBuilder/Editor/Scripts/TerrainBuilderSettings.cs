@@ -10,6 +10,16 @@ namespace Rowlan.TerrainBuilder
     /// </summary>
     internal class TerrainBuilderSettings : NoiseSettings
     {
+        public enum TargetTerrain
+        {
+            [Tooltip("The main terrain, i. e. the one Terrain.activeTerrain returns")]
+            Active,
+            [Tooltip("All in the same group of the active terrain")]
+            All,
+            [Tooltip("The selected gameobjects")]
+            Selected,
+        }
+
         public enum ContinuousUpdate
         {
             Manually,
@@ -17,6 +27,7 @@ namespace Rowlan.TerrainBuilder
             OnEditorUpdateEvent
         }
 
+        public TargetTerrain targetTerrain = TargetTerrain.Active;
         public ContinuousUpdate continuousUpdate = ContinuousUpdate.Manually;
 
         public void OnValidate()

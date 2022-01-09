@@ -10,6 +10,7 @@ namespace Rowlan.TerrainBuilder
 
         public static readonly string TOOLBAR = "terrain-builder_toolbar";
         public static readonly string TOOLBAR_CREATE_TERRAIN_BUTTON = "terrain-builder_create-terrain-button";
+        public static readonly string TOOLBAR_TARGET_TERRAIN_ENUMFIELD = "terrain-builder_target-terrain-enumfield";
         public static readonly string TOOLBAR_CONTINUOUS_UPDATE_ENUMFIELD = "terrain-builder_continuous-update-enumfield";
         public static readonly string TOOLBAR_WARNING_LABEL = "terrain-builder_warning-label";
 

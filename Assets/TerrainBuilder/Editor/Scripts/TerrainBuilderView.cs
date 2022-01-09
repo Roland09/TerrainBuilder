@@ -16,6 +16,7 @@ namespace Rowlan.TerrainBuilder
         private TerrainBuilderSettings noiseSettings;
 
         #region GUI
+        EnumField targetTerrainField;
         EnumField continuousUpdateField;
         #endregion GUI
 
@@ -36,7 +37,13 @@ namespace Rowlan.TerrainBuilder
             VisualElement toolbar = new VisualElement();
             toolbar.AddToClassList(Styles.TOOLBAR);
 
-            // continuous toggle
+            // target terrain
+            targetTerrainField = new EnumField("Target Terrain", noiseSettings.targetTerrain);
+            targetTerrainField.RegisterValueChangedCallback((evt) => noiseSettings.targetTerrain = (TargetTerrain)(evt.newValue as System.Enum));
+            targetTerrainField.AddToClassList(Styles.TOOLBAR_TARGET_TERRAIN_ENUMFIELD);
+            toolbar.Add(targetTerrainField);
+
+            // continuous enum
             continuousUpdateField = new EnumField("Continuous Update", noiseSettings.continuousUpdate);
             continuousUpdateField.RegisterValueChangedCallback((evt) => noiseSettings.continuousUpdate = (ContinuousUpdate) (evt.newValue as System.Enum));
             continuousUpdateField.AddToClassList(Styles.TOOLBAR_CONTINUOUS_UPDATE_ENUMFIELD);
@@ -84,6 +91,9 @@ namespace Rowlan.TerrainBuilder
             // apply noise to the individual tiles
             foreach (KeyValuePair<UnityEngine.TerrainUtils.TerrainTileCoord, Terrain> pair in map.terrainTiles)
             {
+                if (!IsInFilter(pair.Value.transform))
+                    continue;
+
                 // get the tile coordinates
                 int tileX = pair.Key.tileX;
                 int tileZ = pair.Key.tileZ;
@@ -112,6 +122,29 @@ namespace Rowlan.TerrainBuilder
                 // create heightmap using the noise
                 ApplyToTerrain(terrainData, tileNoiseSettings, sizeX, sizeY);
 
+            }
+        }
+
+        /// <summary>
+        /// Filter by target terrain selection
+        /// </summary>
+        /// <param name="transform"></param>
+        /// <returns></returns>
+        private bool IsInFilter( Transform transform )
+        {
+            switch(noiseSettings.targetTerrain)
+            {
+                case TargetTerrain.Active:
+                    return transform.gameObject == Terrain.activeTerrain.gameObject;
+
+                case TargetTerrain.All:
+                    return true;
+
+                case TargetTerrain.Selected:
+                    return Selection.gameObjects.Contains(transform.gameObject);
+
+                default:
+                    throw new Exception( $"Unsupported target terrain {noiseSettings.targetTerrain}");
             }
         }
 
