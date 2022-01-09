@@ -17,7 +17,7 @@ namespace Rowlan.TerrainBuilder
 
         #region GUI
         EnumField targetTerrainField;
-        EnumField continuousUpdateField;
+        EnumField updateStrategyField;
         #endregion GUI
 
         /// <summary>
@@ -34,10 +34,10 @@ namespace Rowlan.TerrainBuilder
             targetTerrainField.Init( noiseSettings.targetTerrain);
             targetTerrainField.RegisterValueChangedCallback((evt) => noiseSettings.targetTerrain = (TargetTerrain)(evt.newValue as System.Enum));
 
-            // continuous enum
-            continuousUpdateField = root.Query<EnumField>(UxmlConstants.UPDATE_STRATEGY_ENUM);
-            continuousUpdateField.Init( noiseSettings.continuousUpdate);
-            continuousUpdateField.RegisterValueChangedCallback((evt) => noiseSettings.continuousUpdate = (ContinuousUpdate) (evt.newValue as System.Enum));
+            // update strategy enum
+            updateStrategyField = root.Query<EnumField>(UxmlConstants.UPDATE_STRATEGY_ENUM);
+            updateStrategyField.Init( noiseSettings.updateStrategy);
+            updateStrategyField.RegisterValueChangedCallback((evt) => noiseSettings.updateStrategy = (UpdateStrategy) (evt.newValue as System.Enum));
 
             // create terrain button
             Button createTerrainButton = root.Query<Button>(UxmlConstants.CREATE_TERRAIN_BUTTON);
@@ -148,7 +148,7 @@ namespace Rowlan.TerrainBuilder
 
         public void OnEventRaised()
         {
-            if (noiseSettings.continuousUpdate != ContinuousUpdate.Manually)
+            if (noiseSettings.updateStrategy != UpdateStrategy.Manually)
             {
                 shouldUpdateTerrain = true;
             }
@@ -172,13 +172,13 @@ namespace Rowlan.TerrainBuilder
 
         public void UpdateTerrain()
         {
-            switch(noiseSettings.continuousUpdate)
+            switch(noiseSettings.updateStrategy)
             {
-                case ContinuousUpdate.Manually:
+                case UpdateStrategy.Manually:
                     // nothing to do
                     break;
 
-                case ContinuousUpdate.OnSettingsChange:
+                case UpdateStrategy.OnSettingsChange:
                     if(shouldUpdateTerrain)
                     {
                         CreateTerrain();
@@ -186,7 +186,7 @@ namespace Rowlan.TerrainBuilder
                     }
                     break;
 
-                case ContinuousUpdate.OnEditorUpdateEvent:
+                case UpdateStrategy.OnEditorUpdateEvent:
                     // TODO: this really is too many updates, but it's super smooth if the terrain is small enough; leaving it for now as it is
                     CreateTerrain();
                     shouldUpdateTerrain = false;

@@ -20,7 +20,7 @@ namespace Rowlan.TerrainBuilder
             Selected,
         }
 
-        public enum ContinuousUpdate
+        public enum UpdateStrategy
         {
             Manually,
             OnSettingsChange,
@@ -28,7 +28,7 @@ namespace Rowlan.TerrainBuilder
         }
 
         public TargetTerrain targetTerrain = TargetTerrain.Active;
-        public ContinuousUpdate continuousUpdate = ContinuousUpdate.Manually;
+        public UpdateStrategy updateStrategy = UpdateStrategy.Manually;
 
         public void OnValidate()
         {
