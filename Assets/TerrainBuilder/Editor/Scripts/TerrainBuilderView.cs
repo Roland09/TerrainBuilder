@@ -25,41 +25,23 @@ namespace Rowlan.TerrainBuilder
         /// </summary>
         private bool shouldUpdateTerrain = false;
 
-        public TerrainBuilderView(TerrainBuilderSettings noiseSettings)
+        public TerrainBuilderView(VisualElement root, TerrainBuilderSettings noiseSettings)
         {
             this.noiseSettings = noiseSettings;
 
-            // load stylesheet; note: Resources.Load doesn't seem to work when the asset comes from github via package manager
-            styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>(Styles.USS_FILE));
-
-
-            // toolbar
-            VisualElement toolbar = new VisualElement();
-            toolbar.AddToClassList(Styles.TOOLBAR);
-
             // target terrain
-            targetTerrainField = new EnumField("Target Terrain", noiseSettings.targetTerrain);
+            targetTerrainField = root.Query<EnumField>(UxmlConstants.TARGET_TERRAIN_ENUM);
+            targetTerrainField.Init( noiseSettings.targetTerrain);
             targetTerrainField.RegisterValueChangedCallback((evt) => noiseSettings.targetTerrain = (TargetTerrain)(evt.newValue as System.Enum));
-            targetTerrainField.AddToClassList(Styles.TOOLBAR_TARGET_TERRAIN_ENUMFIELD);
-            toolbar.Add(targetTerrainField);
 
             // continuous enum
-            continuousUpdateField = new EnumField("Continuous Update", noiseSettings.continuousUpdate);
+            continuousUpdateField = root.Query<EnumField>(UxmlConstants.UPDATE_STRATEGY_ENUM);
+            continuousUpdateField.Init( noiseSettings.continuousUpdate);
             continuousUpdateField.RegisterValueChangedCallback((evt) => noiseSettings.continuousUpdate = (ContinuousUpdate) (evt.newValue as System.Enum));
-            continuousUpdateField.AddToClassList(Styles.TOOLBAR_CONTINUOUS_UPDATE_ENUMFIELD);
-            toolbar.Add(continuousUpdateField);
 
             // create terrain button
-            Button createTerrainButton = new Button() { text = "Create Terrain" };
-            createTerrainButton.AddToClassList(Styles.TOOLBAR_CREATE_TERRAIN_BUTTON);
+            Button createTerrainButton = root.Query<Button>(UxmlConstants.CREATE_TERRAIN_BUTTON);
             createTerrainButton.clickable.clicked += () => ButtonClicked();
-            toolbar.Add(createTerrainButton);
-
-            Label warningLabel = new Label("Warning! This will change your terrain. Create a Backup!");
-            warningLabel.AddToClassList(Styles.TOOLBAR_WARNING_LABEL);
-            toolbar.Add(warningLabel);
-
-            Add(toolbar);
 
             AddUpdateListener();
         }

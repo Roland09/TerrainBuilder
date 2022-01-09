@@ -15,7 +15,7 @@ namespace Rowlan.TerrainBuilder
         /// <summary>
         /// Open a NoiseWindow with no source asset to load from
         /// </summary>
-        [MenuItem("Window/Rowlan/Experimental/Terrain Builder")]
+        [MenuItem("Window/Rowlan/Experimental/Terrain Builder %t")]
         public static TerrainBuilderWindow Open()
         {
             #region Rowlan Changes
@@ -101,18 +101,24 @@ namespace Rowlan.TerrainBuilder
             get; private set;
         }
 
-        static void AddTerrainBuilder(TerrainBuilderWindow wnd, NoiseEditorView view)
+        static void AddTerrainBuilder(TerrainBuilderWindow wnd, NoiseEditorView noiseEditorView)
         {
-            view.style.position = Position.Relative;
+            noiseEditorView.style.position = Position.Relative;
 
-            NoiseSettings settings = view.noiseUpdateTarget;
+            VisualTreeAsset visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>( UxmlConstants.TERRAIN_BUILDER_WINDOW_UXML);
+            VisualElement root = visualTree.Instantiate();
+
+            // reparent the noise view
+            wnd.rootVisualElement.Clear();
+            wnd.rootVisualElement.Add(root);
+            root.Q<VisualElement>(UxmlConstants.CONTENT_PANEL).Add(noiseEditorView);
+
+            NoiseSettings settings = noiseEditorView.noiseUpdateTarget;
             
-            TerrainBuilderView terrainBuilderView = new TerrainBuilderView(settings as TerrainBuilderSettings);
+            TerrainBuilderView terrainBuilderView = new TerrainBuilderView(root, settings as TerrainBuilderSettings);
             wnd.terrainBuilderView = terrainBuilderView;
-            wnd.rootVisualElement.Add(terrainBuilderView);
 
             (settings as TerrainBuilderSettings).RegisterListener(terrainBuilderView);
-
         }
 
 

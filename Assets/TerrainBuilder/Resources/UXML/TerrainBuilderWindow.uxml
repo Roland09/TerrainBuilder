@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="toppanel" style="flex-shrink: 0; height: 20px;">
+        <ui:Label text="Warning! This will change your terrain. Create a Backup!" display-tooltip-when-elided="true" name="warninglabel" style="color: rgb(255, 0, 0); -unity-font-style: bold; -unity-text-align: upper-center; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-left-color: rgb(87, 87, 87); border-right-color: rgb(87, 87, 87); border-top-color: rgb(87, 87, 87); border-bottom-color: rgb(87, 87, 87); justify-content: flex-start;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="content-panel" style="flex-grow: 1; flex-shrink: 0;" />
+    <ui:VisualElement name="bottompanel" style="flex-shrink: 0;">
+        <uie:EnumField label="Target Terrain" value="Center" name="target-terrain-enum" />
+        <uie:EnumField label="Update Strategy" value="Center" name="update-strategy-enum" />
+        <ui:Button text="Create Terrain" display-tooltip-when-elided="true" name="create-terrain-button" />
+    </ui:VisualElement>
+</ui:UXML>
