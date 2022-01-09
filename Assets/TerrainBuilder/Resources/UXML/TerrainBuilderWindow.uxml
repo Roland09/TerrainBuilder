@@ -5,8 +5,9 @@
     <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1">
         <ui:VisualElement name="content-panel" style="flex-grow: 1; flex-shrink: 0;" />
     </ui:ScrollView>
-    <ui:VisualElement name="bottompanel" style="flex-shrink: 0;">
-        <uie:EnumField label="Target Terrain" value="Center" name="target-terrain-enum" />
+    <ui:VisualElement name="bottompanel" style="flex-shrink: 0; width: 350px;">
+        <ui:Label text="Modify Terrain" display-tooltip-when-elided="true" style="padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; -unity-font-style: bold-and-italic;" />
+        <uie:EnumField label="Target" value="Center" name="target-terrain-enum" />
         <uie:EnumField label="Update Strategy" value="Center" name="update-strategy-enum" />
         <ui:Button text="Create Terrain" display-tooltip-when-elided="true" name="create-terrain-button" />
     </ui:VisualElement>
