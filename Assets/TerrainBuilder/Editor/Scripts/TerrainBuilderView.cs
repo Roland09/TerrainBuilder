@@ -94,8 +94,9 @@ namespace Rowlan.TerrainBuilder
                 // scale 1 => correct: 0.998
                 // scale 10 => correct: 9.998
                 // => multiplying  the scale with that number worked for the other scales
-                // need to find out why there's this difference; leaving it as it is for now, no time to evaluate the cause
-                float magicNumber = 0.998f;
+                // comparing with other heightmap cases it seems to be related to the +1 of the heightmap resolution
+                // so eg magicNumber = 1024/1025. not sure though what that ratio also does internally, so leaving it as it is
+                float magicNumber = (terrain.terrainData.heightmapResolution - 1) / (float)terrain.terrainData.heightmapResolution;
 
                 //cs.transformSettings.translation.z += ff.value;
                 tileNoiseSettings.transformSettings.translation.x += tileNoiseSettings.transformSettings.scale.x * tileX * magicNumber;
